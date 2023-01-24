@@ -1,4 +1,11 @@
 {
     "Name": "CW2401",
-    "Version": "1.0.0"
+    "Version": "1.0.0",
+    "scripts": {
+        "exp": "npm install express"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "nodemon": "^2.0.20"
+    }
 }

@@ -1,7 +1,7 @@
-var http = require("http");
+var exp = require("express");
+var path = require("path");
+var app = exp();
 
-http.createServer((req, resp)=>{
-    var text = "Smth text";
-    console.log(text);
-    resp.end(text);
-}).listen(3000,"localhost",()=>{console.log("Srv run")});
+app.use(exp.static(path.join(__dirname,"/public")));
+
+app.listen(3000);
