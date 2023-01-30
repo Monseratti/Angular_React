@@ -1,3 +1,4 @@
+
 module.exports.Parser = function(text){
     var symb = new Map();
     for (let index = 0; index < text.length; index++) {
