@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BillyComponent } from './billy/billy.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { BillyComponent } from './billy/billy.component';
     BillyComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule
   ],
