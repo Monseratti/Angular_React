@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div *ngFor="let res of resume" class="row"> 
+        <div class="col-6">
+            <img src={{res.PhotoPath}} alt="No Photo">
+        </div>
+        <div class="col-6">
+            <div class="row">{{res.Name}}</div>
+            <div class="row">{{res.City}}</div>
+            <div class="row"> Phone: 
+                <ul>
+                    <li *ngFor="let ph of res.Phone">
+                        {{ph}}
+                    </li>
+                </ul>
+            </div>
+            <div class="row"> Email:
+                <ul>
+                    <li *ngFor="let em of res.Email">
+                        {{em}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
