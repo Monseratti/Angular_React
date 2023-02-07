@@ -1,0 +1,13 @@
+img{
+    width: 20%;
+}
+img.artData{
+    width: 40%;
+}
+
+div{
+    visibility: collapse;
+}
+div.artData{
+    visibility: visible;
+}

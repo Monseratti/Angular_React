@@ -1,0 +1,17 @@
+
+<table class="table table-borderless">
+    <tr *ngFor="let art of data">
+        <td>
+            <img (click)="mouseOver(art)" src={{art.photoPath}} [class.artData]="art===currentArt" alt="noPhoto">
+        </td>
+        <td>
+            <div [class.artData]="art===currentArt" class="d-flex flex-column">
+                <ul>
+                    <li>{{art.name}}, {{art.size}}</li>
+                    <li>{{art.author}} - {{art.year}}</li>
+                    <li>{{art.plase}}</li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</table>
