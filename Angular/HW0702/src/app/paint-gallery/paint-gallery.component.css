@@ -2,10 +2,11 @@ img{
     width: 20%;
 }
 img.artData{
-    width: 40%;
+    transform:scale(140%);
+    transition-duration: 1s;
 }
 
-div{
+div.mydiv{
     visibility: collapse;
 }
 div.artData{
