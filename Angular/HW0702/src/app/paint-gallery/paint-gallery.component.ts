@@ -16,6 +16,9 @@ export class PaintGalleryComponent {
   mouseOver(art:Paint){
     this.currentArt=art;
   }
+  mouseLeave(){
+    this.currentArt={name:"", author:"", year:0,plase:"",size:"",photoPath:""};
+  }
   ngOnInit(){
     this.data=this.myPaintGallery.get();
   }

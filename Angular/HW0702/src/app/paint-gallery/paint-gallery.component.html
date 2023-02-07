@@ -2,7 +2,7 @@
 <table class="table table-borderless">
     <tr *ngFor="let art of data">
         <td>
-            <img (click)="mouseOver(art)" src={{art.photoPath}} [class.artData]="art===currentArt" alt="noPhoto">
+            <img (mouseover)="mouseOver(art)" (mouseleave)="mouseLeave()" src={{art.photoPath}} [class.artData]="art===currentArt" alt="noPhoto">
         </td>
         <td>
             <div [class.artData]="art===currentArt" class="d-flex flex-column">
