@@ -1,0 +1,8 @@
+<form #someForm="ngForm" (ngSubmit)="submitData()">
+    <input disabled="" name="hn"  [(ngModel)]="hobbieName">
+    <button type="button" (click)="editData()">Edit</button>
+    
+    <input [class.enabled]="isEdit" [class.disabled]="!isEdit" name="hned" [(ngModel)]="hobbieName">
+    <button [class.enabled]="isEdit" [class.disabled]="!isEdit">Save</button>
+</form>
+    

@@ -1,0 +1,11 @@
+<div class="d-flex">
+    <input [(ngModel)]="text" placeholder="Enter name of famous people">
+    <button (click)="addFP(text)">Add</button>
+</div>
+<div>
+    <ul>
+        <li *ngFor="let fp of data">
+            {{fp}}
+        </li>
+    </ul>
+</div>
