@@ -1,0 +1,7 @@
+.div{
+    display: flex;
+    flex-direction: row;
+}
+div{
+    display: inline-block;
+}

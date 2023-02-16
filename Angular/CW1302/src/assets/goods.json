@@ -1,0 +1,24 @@
+{
+    "goodsList":[
+        {
+            "name": "Good1",
+            "price": 100.00
+        },
+        {
+            "name": "Good2",
+            "price": 90.89
+        },
+        {
+            "name": "Good3",
+            "price": 99.09
+        },
+        {
+            "name": "Good4",
+            "price": 100.29
+        },
+        {
+            "name": "Good5",
+            "price": 105.05
+        }
+    ]
+}

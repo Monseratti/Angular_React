@@ -1,0 +1,6 @@
+<div>
+    <ul>
+        <li *ngFor='let good of goods'>{{good.name}}, <b>${{good.price}}</b></li>
+    </ul>
+    <button (click)="reGoods()" class="btn btn-primary ms-5">Click</button>
+</div>
