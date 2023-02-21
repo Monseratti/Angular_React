@@ -1,0 +1,11 @@
+<div class="col-3 m-3">
+  <label for="" class="form-label">Login</label>
+  <input class="form-control" name="userlogin" placeholder="Enter login" [(ngModel)]="user.login">
+  <label for="" class="form-label">Password</label>
+  <input type="password" name="userpassword" class="form-control" placeholder="Enter password" [(ngModel)]="user.password">
+  <hr>
+  <button class="btn btn-danger m-3" (click)="post(user)">Send</button>
+</div>
+<div *ngIf="done">
+    Result: {{result}}
+</div>
