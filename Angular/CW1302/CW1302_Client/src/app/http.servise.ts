@@ -7,6 +7,6 @@ export class HttpServise{
     constructor(private http:HttpClient){}
 
     postUser(user:User){
-        return this.http.post("localhost:3000/postData",JSON.stringify(user));
+        return this.http.post("http://localhost:7171/postData",user);
     }
 }
