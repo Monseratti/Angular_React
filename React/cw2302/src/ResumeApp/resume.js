@@ -7,4 +7,7 @@ export default class Resume{
         this.phoneNumber = phoneNumber;
         this.city = city;
     }
+    clone(){
+        return new Resume(this.name, this.surname, this.birthDay, this.email, this.phoneNumber, this.city);
+    }
 }

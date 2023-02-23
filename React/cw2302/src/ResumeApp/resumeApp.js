@@ -5,7 +5,7 @@ export default class ResumeApp extends Component{
     constructor(props){
         super(props);
         this.myResume = props.resume;
-        this.baseResume = props.resume;
+        this.baseResume = props.resume.clone();
         this.state = {resume:this.myResume};
 
         this.nameRef = createRef();
@@ -52,19 +52,25 @@ export default class ResumeApp extends Component{
 
     handlerReset(e){
         e.preventDefault();
-        //this.myResume = this.baseResume;
-        console.log(this.baseResume);
-        this.nameRef.current.value = this.myResume.name;
-        this.surnameRef.current.value = this.myResume.name;
-        this.emailRef.current.value = this.myResume.name;
-        this.bDayRef.current.value = this.myResume.name;
-        this.phoneNumberRef.current.value = this.myResume.name;
-        this.cityRef.current.value = this.myResume.name;
-
-        this.setState({resume: this.myResume});
+        this.nameRef.current.value = this.baseResume.name;
+        this.surnameRef.current.value = this.baseResume.surname;
+        this.emailRef.current.value = this.baseResume.email;
+        this.bDayRef.current.value = this.baseResume.birthDay;
+        this.phoneNumberRef.current.value = this.baseResume.phoneNumber;
+        this.cityRef.current.value = this.baseResume.city;
+        this.myResume = this.baseResume.clone();
+        this.setState({resume:this.myResume});
     }
     handlerSubmit(e){
-        e.peventDefault();
+        e.preventDefault();
+        alert(
+            `Name: ${this.myResume.name}\n`+
+            `Surname: ${this.myResume.surname}\n`+
+            `B-Day: ${this.myResume.birthDay}\n`+
+            `Phone: ${this.myResume.phoneNumber}\n`+
+            `Email: ${this.myResume.email}\n`+
+            `City: ${this.myResume.city}`
+        );
     }
 
     render(){
@@ -136,7 +142,7 @@ export default class ResumeApp extends Component{
                         <div className="col-8">
                             <input 
                                 ref={this.cityRef}
-                                type="email" 
+                                type="text" 
                                 className="form-control" 
                                 placeholder="email@email.com" 
                                 value={this.state.resume.city}
