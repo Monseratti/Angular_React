@@ -1,5 +1,5 @@
 
-export class City{
+export default class City{
     constructor(name, population, country){
         this.name = name;
         this.population = population;
