@@ -34,4 +34,18 @@ app.get("/toDoList",jsonParser,(req,resp)=>{
     })
 })
 
+app.get("/tasks",jsonParser,(req,resp)=>{
+    fs.readFile("files/data.json","utf-8",(err,data)=>{
+        if(err) return console.log(err);
+        let toDoList = JSON.parse(data);
+        let findID = req.query.id;
+        let task = toDoList.find(o=>o.id==findID)
+        if (task!== undefined) 
+        resp.json({"task":task, "isOk":true});
+        else
+        resp.json({"task":{}, "isOk":false})
+
+    })
+})
+
 app.listen(7171);

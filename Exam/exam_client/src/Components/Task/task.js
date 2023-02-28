@@ -18,7 +18,7 @@ function Check(props){
     return(
         <>
             <label>
-                {props.title=="setPriority"?"Hight priority":"Done"}
+                {props.title==="setPriority"?"Hight priority":"Done"}
                 <input type={"checkbox"} onChange={handlerChecked} /> 
             </label>
         </>
@@ -33,7 +33,7 @@ function Input(props){
         <>
             <label className="mb-3">
                 {props.title}:
-                <input className="ms-3" type={ props.dataType == "toDoDate"? "date": "text"} onChange={handlerChange}/>
+                <input className="ms-3" type={ props.dataType === "toDoDate"? "date": "text"} onChange={handlerChange}/>
             </label>
         </>
     )
@@ -48,7 +48,7 @@ function Display(props){
                 <tbody>
                     <tr>
                         <td>Prioprty:</td>
-                        <td>{props.hightPriority==false?"standart":"hight"}</td>
+                        <td>{props.hightPriority===false?"standart":"hight"}</td>
                     </tr>
                     <tr>
                         <td>Date:</td>
@@ -68,17 +68,27 @@ function Display(props){
     );
 }
 
-export default function Task(){
-    const [title, setTitle] = useState("");
-    const [date, setDate] = useState("");
-    const [toDoDate, setToDoDate] = useState("");
-    const [descr, setDescr] = useState("");
-    const [tags, setTags] = useState("");
-    const [hightPriority, setHightPriority] = useState(false);
+export default function Task(props){
+    const [id, setID] = useState(props.isEdit!== undefined?props.id:0);
+    const [title, setTitle] = useState(props.isEdit!== undefined?props.title:"");
+    const [date, setDate] = useState(props.isEdit!== undefined?props.date:"");
+    const [toDoDate, setToDoDate] = useState(props.isEdit!== undefined?props.toDoDate:"");
+    const [descr, setDescr] = useState(props.isEdit!== undefined?props.descr:"");
+    const [tags, setTags] = useState(props.isEdit!== undefined?props.tags:"");
+    const [hightPriority, setHightPriority] = useState(props.isEdit!== undefined?props.hightPriority:false);
     const [successPost, setSuccessPost] = useState(false);
+    // if(props.isEdit!== undefined){
+    //     setID(props.id);
+    //     setTitle(props.title);
+    //     setDate(props.date);
+    //     setToDoDate(props.toDoDate);
+    //     setDescr(props.descr);
+    //     setTags(props.tags);
+    //     setHightPriority(props.hightPriority);
+    // }
 
     const changePriority = ()=>{
-        return hightPriority==false?setHightPriority(true):setHightPriority(false);
+        return hightPriority===false?setHightPriority(true):setHightPriority(false);
     }
 
     const setDone = ()=>{
@@ -95,6 +105,7 @@ export default function Task(){
                 return setDescr(data);
             case "tags":
                 return setTags(data);
+            default: break;
         }
     }
 
@@ -102,9 +113,20 @@ export default function Task(){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({"task":{ "id":0,"title":title,"date":date, "toDoDate":toDoDate, "descr":descr, "tags":tags, "hightPriority":hightPriority }})
+            body: JSON.stringify({"task":{ "id":id,"title":title,"date":date, "toDoDate":toDoDate, "descr":descr, "tags":tags, "hightPriority":hightPriority }})
         };
         await fetch("http://localhost:7171/postTask",requestOptions)
+                .then(resp=>resp.json())
+                .then(data=>setSuccessPost(data.isOK));
+    }
+
+    const editTask = async ()=>{
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({"task":{ "id":id,"title":title,"date":date, "toDoDate":toDoDate, "descr":descr, "tags":tags, "hightPriority":hightPriority }})
+        };
+        await fetch("http://localhost:7171/editTask",requestOptions)
                 .then(resp=>resp.json())
                 .then(data=>setSuccessPost(data.isOK));
     }
@@ -120,7 +142,7 @@ export default function Task(){
                 <Input changeValue = {setterFunc} title="Tags" dataType="tags"/>
             </div>
                 <Display title={title} date={date} toDoDate={toDoDate} descr={descr} tags={tags} hightPriority={hightPriority}/>
-                <Button send={postTask}/>
+                <Button send={props.isEdit===undefined?postTask:editTask}/>
                 {successPost?<div>Posted</div>:<div/>}
         </>
     );
